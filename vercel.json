@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "apimantenimiento.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "apimantenimiento.py"
+    }
+  ]
+}
