@@ -11,4 +11,4 @@
       "dest": "apimantenimiento.py"
     }
   ]
-}git commit -am "corregir blimpiar tabla mecanicos con cambio de semana" && git push origin main
+}
