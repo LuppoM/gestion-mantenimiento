@@ -1,0 +1,122 @@
+/* principalvista.css */
+
+:root {
+    --bg-main: #f0f4f8;
+    --primary-color: #003366;
+    --primary-hover: #00264d;
+    --btn-bg: #cce6ff;
+    --btn-hover: #99ccff;
+    --text-color: #004080;
+    --toolbar-bg: #999a9c;
+}
+
+/* Configuración general de la página */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-main);
+}
+
+/* Imagen de fondo adaptable */
+.fondo-pantalla {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Barra superior de botones (equivalente al button_frame) */
+.toolbar-superior {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--toolbar-bg);
+    height: 70px;
+    padding: 0 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Estilo unificado para los botones de la barra superior */
+.btn-sistema, .menu-parametros {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-color);
+    background-color: var(--btn-bg);
+    border: 1px solid #b8daff;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex: 1;
+    margin: 0 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-sistema:hover, .menu-parametros:hover {
+    background-color: var(--btn-hover);
+    color: var(--primary-hover);
+}
+
+/* Estilo específico para el botón Salir si se desea diferenciar */
+.btn-salir {
+    background-color: #ffcccc;
+    color: #990000;
+}
+
+.btn-salir:hover {
+    background-color: #ff9999;
+    color: #660000;
+}
+
+/* Dropdown de Parámetros */
+.dropdown {
+    position: relative;
+    display: inline-flex;
+    flex: 1;
+    margin: 0 8px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 10;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: var(--primary-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--btn-bg);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
