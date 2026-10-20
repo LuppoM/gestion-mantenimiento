@@ -3,37 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Mantenimiento</title>
-    <!-- Icono de la pestaña -->
-    <link rel="icon" href="/static/iconom.ico" type="image/x-icon">
-    <!-- Hoja de estilos convertida a CSS -->
+    <title>Sistema de Gestión de Mantenimiento</title>
+    <!-- Enlace correcto al CSS usando la ruta estática de FastAPI -->
     <link rel="stylesheet" href="/static/principalvista.css">
+    <link rel="icon" href="/static/iconom.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- Si usás una imagen de fondo o logo, debe apuntar a /static/ -->
+    <!-- <img src="/static/fondo.jpg" alt="Fondo" class="bg-image"> -->
 
-    <!-- Imagen de fondo adaptable -->
-    <img src="/static/fondo.jpg" alt="Fondo" class="fondo-pantalla">
-
-    <!-- Barra superior de navegación (equivalente al toolbar) -->
-    <div class="toolbar-superior">
-        <a href="/ot" class="btn-sistema">Órdenes de Trabajo</a>
-        <a href="/tareas" class="btn-sistema">Tareas fin de semana</a>
-        <a href="/parte-diario" class="btn-sistema">Parte Diario</a>
-        <a href="/notas-pedido" class="btn-sistema">Notas de Pedido</a>
-
-        <!-- Menú desplegable de Parámetros -->
-        <div class="dropdown">
-            <button class="menu-parametros">Parámetros ▼</button>
-            <div class="dropdown-content">
-                <a href="/mecanicos">Mecánicos</a>
-                <a href="/sectores">Sectores</a>
-                <a href="/plantas">Plantas</a>
-            </div>
+    <div class="main-container">
+        <h1>Sistema de Gestión de Mantenimiento</h1>
+        
+        <div class="nav-links">
+            <a href="#">Órdenes de Trabajo</a>
+            <a href="#">Tareas fin de semana</a>
+            <a href="#">Parte Diario</a>
+            <a href="#">Notas de Pedido</a>
         </div>
 
-        <!-- Botón Salir -->
-        <a href="/salir" class="btn-sistema btn-salir">Salir</a>
+        <div class="param-links">
+            <a href="#">Mecánicos</a>
+            <a href="#">Sectores</a>
+            <a href="#">Plantas</a>
+        </div>
     </div>
-
 </body>
 </html>
