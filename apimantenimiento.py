@@ -24,7 +24,7 @@ templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 @app.get("/", response_class=HTMLResponse)
 def leer_inicio(request: Request):
     """Renderiza la pantalla principal del sistema."""
-    return templates.TemplateResponse("principal.html", {"request": request})
+    return templates.TemplateResponse(request, "principal.html", {})
 
 @app.get("/ot", response_class=HTMLResponse)
 def vista_ordenes_trabajo(request: Request):
