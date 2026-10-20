@@ -59,3 +59,38 @@ body {
     letter-spacing: 2px;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
+/* Contenedor del menú desplegable */
+.dropdown {
+    position: relative; /* <-- ESTO ES CLAVE para que flote en su lugar */
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Se posiciona justo abajo del botón */
+    left: 0;
+    background-color: #e0e0e0;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 100;
+    border: 1px solid #999;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+}
+
+.dropdown-menu a:hover {
+    background-color: #c9e2f6;
+}
+
+/* Mostrar el menú al pasar el cursor por encima */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
