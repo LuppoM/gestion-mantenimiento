@@ -3,30 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Gestión de Mantenimiento</title>
-    <!-- Enlace correcto al CSS usando la ruta estática de FastAPI -->
-    <link rel="stylesheet" href="/static/principalvista.css">
+    <title>Gestión de Mantenimiento</title>
+    <link rel="stylesheet" href="/static/Principalvista.css">
     <link rel="icon" href="/static/iconom.ico" type="image/x-icon">
 </head>
 <body>
-    <!-- Si usás una imagen de fondo o logo, debe apuntar a /static/ -->
-    <!-- <img src="/static/fondo.jpg" alt="Fondo" class="bg-image"> -->
+    <!-- Barra superior de botones -->
+    <div class="top-nav">
+        <button class="nav-btn">Órdenes de Trabajo</button>
+        <button class="nav-btn">Tareas fin de semana</button>
+        <button class="nav-btn">Parte Diario</button>
+        <button class="nav-btn">Notas de Pedido</button>
+        <button class="nav-btn">Parámetros</button>
+        <button class="nav-btn salir-btn">Salir</button>
+    </div>
 
-    <div class="main-container">
-        <h1>Sistema de Gestión de Mantenimiento</h1>
-        
-        <div class="nav-links">
-            <a href="#">Órdenes de Trabajo</a>
-            <a href="#">Tareas fin de semana</a>
-            <a href="#">Parte Diario</a>
-            <a href="#">Notas de Pedido</a>
-        </div>
-
-        <div class="param-links">
-            <a href="#">Mecánicos</a>
-            <a href="#">Sectores</a>
-            <a href="#">Plantas</a>
-        </div>
+    <!-- Contenido central con el título y fondo -->
+    <div class="center-content">
+        <h1>GESTIÓN DE MANTENIMIENTO</h1>
     </div>
 </body>
 </html>
