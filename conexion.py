@@ -5,7 +5,7 @@ from psycopg2.extras import RealDictCursor
 # URL de conexión de Neon (lee la variable de entorno o usa la cadena por defecto)
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "TU_URL_DE_NEON_AQUI"  # Reemplazá con tu cadena de conexión si es necesario
+    "postgresql://neondb_owner:npg_AH8J5qmRYDXZ@ep-raspy-leaf-b4r6bylb-pooler.c-6.us-east-2.aws.neon.tech/MANTENIMIENTODB?sslmode=require&channel_binding=require"  # Reemplazá con tu cadena de conexión si es necesario
 )
 
 def obtener_conexion():
