@@ -54,9 +54,13 @@ def vista_mecanicos(request: Request):
     return HTMLResponse("<h1>Módulo de Mecánicos en construcción</h1>")
 
 @app.get("/sectores", response_class=HTMLResponse)
-def vista_sectores(request: Request):
-    """Parámetro: Sectores."""
-    return HTMLResponse("<h1>Módulo de Sectores en construcción</h1>")
+def ver_sectores(request: Request):
+    """Obtiene los sectores de la base de datos de Neon y los muestra en la plantilla HTML."""
+    try:
+        sectores = obtener_sectores()
+        return templates.TemplateResponse(request, "sectores.html", {"request": request, "sectores": sectores})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/plantas", response_class=HTMLResponse)
 def vista_plantas(request: Request):
