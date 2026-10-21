@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sectores - Gestión de Mantenimiento</title>
+    <link rel="stylesheet" href="/static/Principalvista.css">
+    <link rel="stylesheet" href="/static/sectoresvista.css">
+    <link rel="icon" href="/static/iconom.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="top-nav">
+        <a href="/" class="nav-btn" style="text-decoration: none; text-align: center;">Inicio</a>
+        <button class="nav-btn" onclick="abrirModalAgregar()">Agregar</button>
+        <button class="nav-btn" onclick="abrirModalModificar()">Modificar</button>
+        <button class="nav-btn" onclick="eliminarSeleccionado()">Eliminar</button>
+        <a href="/" class="nav-btn salir-btn" style="text-decoration: none; text-align: center;">Cerrar</a>
+    </div>
+
+    <div class="content-container">
+        <h2>Listado de Sectores</h2>
+        <div class="table-responsive">
+            <table class="data-table" id="tablaSectores">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Sector</th>
+                        <th>Planta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sector in sectores %}
+                    <tr onclick="seleccionarFila(this)" data-id="{{ sector[0] }}" data-nombre="{{ sector[1] }}" data-planta="{{ sector[2] }}">
+                        <td>{{ sector[0] }}</td>
+                        <td>{{ sector[1] }}</td>
+                        <td>{{ sector[2] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para Agregar / Modificar -->
+    <div id="modalABM" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3 id="modalTitulo">Agregar Sector</h3>
+            <form id="formABM" method="POST" action="/sectores/agregar">
+                <label>Nombre del Sector:</label>
+                <input type="text" id="nombreInput" name="nombre" required>
+                
+                <label>Planta:</label>
+                <input type="text" id="plantaInput" name="planta" required>
+                
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-guardar">Guardar</button>
+                    <button type="button" class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let idSeleccionado = null;
+
+        function seleccionarFila(tr) {
+            document.querySelectorAll('#tablaSectores tbody tr').forEach(r => r.classList.remove('selected'));
+            tr.classList.add('selected');
+            idSeleccionado = tr.getAttribute('data-id');
+            window.datosFila = {
+                id: idSeleccionado,
+                nombre: tr.getAttribute('data-nombre'),
+                planta: tr.getAttribute('data-planta')
+            };
+        }
+
+        function abrirModalAgregar() {
+            document.getElementById('modalTituloinnerText').innerText = "Agregar Sector";
+            document.getElementById('formABM').action = "/sectores/agregar";
+            document.getElementById('nombreInput').value = "";
+            document.getElementById('plantaInput').value = "";
+            document.getElementById('modalABM').style.display = "flex";
+        }
+
+        function abrirModalModificar() {
+            if (!idSeleccionado) {
+                alert("Por favor, seleccione un sector de la tabla.");
+                return;
+            }
+            document.getElementById('modalTitulo').innerText = "Modificar Sector";
+            document.getElementById('formABM').action = "/sectores/modificar/" + idSeleccionado;
+            document.getElementById('nombreInput').value = window.datosFila.nombre;
+            document.getElementById('plantaInput').value = window.datosFila.planta;
+            document.getElementById('modalABM').style.display = "flex";
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalABM').style.display = "none";
+        }
+
+        function eliminarSeleccionado() {
+            if (!idSeleccionado) {
+                alert("Por favor, seleccione un sector de la tabla.");
+                return;
+            }
+            if (confirm("¿Está seguro de eliminar este sector?")) {
+                let form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/sectores/eliminar/' + idSeleccionado;
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+</body>
+</html>

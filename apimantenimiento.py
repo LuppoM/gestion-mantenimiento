@@ -88,13 +88,6 @@ def probar_conexion():
         raise HTTPException(status_code=500, detail=f"Error al conectar con la base de datos: {str(e)}")
 
 # --- MÓDULO SECTORES ---
-@app.get("/sectores", response_class=HTMLResponse)
-def ver_sectores(request: Request):
-    try:
-        sectores = obtener_sectores()
-        return templates.TemplateResponse(request, "sectores.html", {"request": request, "sectores": sectores})
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/sectores/agregar")
 def crear_sector(nombre: str = Form(...), planta: str = Form(...)):
