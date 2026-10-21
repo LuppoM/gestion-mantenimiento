@@ -4,7 +4,8 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import os
-
+from fastapi import Form
+from sectoresmodelo import obtener_sectores, agregar_sector, modificar_sector, eliminar_sector
 # Importar la conexión a la base de datos de Neon
 from conexion import obtener_conexion
 
@@ -81,3 +82,36 @@ def probar_conexion():
         return {"estado": "Conexión exitosa a Neon", "version_db": version[0]}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al conectar con la base de datos: {str(e)}")
+
+# --- MÓDULO SECTORES ---
+@app.get("/sectores", response_class=HTMLResponse)
+def ver_sectores(request: Request):
+    try:
+        sectores = obtener_sectores()
+        return templates.TemplateResponse(request, "sectores.html", {"request": request, "sectores": sectores})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/sectores/agregar")
+def crear_sector(nombre: str = Form(...), planta: str = Form(...)):
+    try:
+        agregar_sector(nombre, planta)
+        return RedirectResponse(url="/sectores", status_code=303)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/sectores/modificar/{id_sector}")
+def actualizar_sector(id_sector: int, nombre: str = Form(...), planta: str = Form(...)):
+    try:
+        modificar_sector(id_sector, nombre, planta)
+        return RedirectResponse(url="/sectores", status_code=303)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/sectores/eliminar/{id_sector}")
+def borrar_sector(id_sector: int):
+    try:
+        eliminar_sector(id_sector)
+        return RedirectResponse(url="/sectores", status_code=303)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
